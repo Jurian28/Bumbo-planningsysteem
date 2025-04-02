@@ -1,0 +1,88 @@
+﻿@model BumboDB.Models.Employee
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center text-white bg-dark">
+                    <h2>Add New Employee</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <input asp-for="Id" type="hidden" />
+                        <input asp-for="IsAvailable" type="hidden" />
+                        <input asp-for="Status" type="hidden" />
+                        <input asp-for="PasswordHash" type="hidden" />
+
+                        <!-- Name Field -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Name" class="form-label">Name</label>
+                            <input asp-for="Name" class="form-control" maxlength="45" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Birthday Field -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Birthday" class="form-label">Birthday</label>
+                            <input asp-for="Birthday" class="form-control" type="date" required />
+                            <span asp-validation-for="Birthday" class="text-danger"></span>
+                        </div>
+
+                        <!-- Zipcode Field -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Zipcode" class="form-label">Zipcode</label>
+                            <input asp-for="Zipcode"
+                                   class="form-control"
+                                   maxlength="6"
+                                   placeholder="1234AB"
+                                   required
+                                   pattern="^[^\s]*$"
+                                   title="Zipcode cannot contain spaces." />
+                            <span asp-validation-for="Zipcode" class="text-danger"></span>
+                        </div>
+
+                        <!-- House Number Field -->
+                        <div class="form-group mb-3">
+                            <label asp-for="HouseNumber" class="form-label">House Number</label>
+                            <input asp-for="HouseNumber"
+                                   class="form-control"
+                                   maxlength="10"
+                                   pattern="^\d+[A-Za-z]*$"
+                                   placeholder="123A"
+                                   title="House number must be numeric and can optionally include a letter, e.g., 123A"
+                                   required />
+                            <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" type="email" placeholder="example@domain.com" required />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <!-- Phone Number Field -->
+                        <div class="form-group mb-3">
+                            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                            <input asp-for="PhoneNumber" class="form-control" type="number" min="0" placeholder="0634567890" required />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <!-- Pay Scale Field -->
+                        <div class="form-group mb-3">
+                            <label asp-for="PayScale" class="form-label">Pay Scale</label>
+                            <input asp-for="PayScale" class="form-control" type="number" min="0" max="999" required />
+                            <span asp-validation-for="PayScale" class="text-danger"></span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="text-center mt-3">
+                            <a asp-action="Index" class="btn btn-secondary me-3">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

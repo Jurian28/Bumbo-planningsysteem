@@ -1,0 +1,56 @@
+﻿@using Bumbo.Resources
+@using BumboDB.Models
+@model List<Employee>
+
+
+
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col-md-8 offset-md-2">
+            <div class="input-group">
+                <!-- Search Bar -->
+                <form action="/MedewerkersBeheren/Index" method="GET" class="d-flex">
+                    <input type="text" name="searchQuery" class="form-control me-2" placeholder="Search..." value="@ViewData["Query"]" />
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2 text-end">
+            <a class="btn btn-primary" href="@Url.Action("Create", "MedewerkersBeheren")">Add</a>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var employee in Model)
+        {
+            var statusClass = employee.Status == "Fired" ? "fired-employee-card" : "employee-card";
+            var reverseFired = employee.Status == "Fired" ? "Active" : "Fired";
+            var buttonName = employee.Status == "Fired" ? "Unfire" : "Fire";
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm @statusClass">
+                    <div class="card-body">
+                        <h5 class="card-title">@employee.Name</h5>
+                        <p class="card-text"><strong>Age:</strong> @employee.getAge()</p>
+                        <p class="card-text"><strong>Birthday:</strong> @employee.Birthday.ToString("dd/MM/yyyy")</p>
+                        <p class="card-text"><strong>Employed Since:</strong> @employee.EmployedSince.ToString("dd/MM/yyyy")</p>
+                        <p class="card-text"><strong>Zipcode:</strong> @employee.Zipcode</p>
+                        <p class="card-text"><strong>House Number:</strong> @employee.HouseNumber</p>
+                        <p class="card-text"><strong>Pay Scale:</strong> @employee.PayScale</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-primary mr-2" href="@Url.Action("Edit", "MedewerkersBeheren", new { id = employee.Id })">Edit</a>
+                        <a class="btn btn-danger" onclick="return confirm('Weet u zeker dat de status van de medewerker: @employee.Name veranderd moet worden naar @reverseFired?')" href="@Url.Action("Fire", "MedewerkersBeheren", new { id = employee.Id })">@buttonName</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@if (!string.IsNullOrEmpty(ViewBag.newEmployeePassword)) {
+    <script>
+        alert('Het wachtwoord van de nieuwe medewerker is: @ViewBag.newEmployeePassword. Geef dit door aan de nieuwe medewerker.');
+    </script>
+}

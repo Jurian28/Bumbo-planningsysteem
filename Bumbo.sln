@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bumbo", "Bumbo\Bumbo.csproj", "{55909B8F-C389-4476-9173-D249C865A51D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BumboDB", "BumboDB\BumboDB.csproj", "{433E4216-FD20-431E-9455-8B1F5680A8D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55909B8F-C389-4476-9173-D249C865A51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55909B8F-C389-4476-9173-D249C865A51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55909B8F-C389-4476-9173-D249C865A51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55909B8F-C389-4476-9173-D249C865A51D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{433E4216-FD20-431E-9455-8B1F5680A8D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433E4216-FD20-431E-9455-8B1F5680A8D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433E4216-FD20-431E-9455-8B1F5680A8D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433E4216-FD20-431E-9455-8B1F5680A8D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E60A344-E649-49B7-9A26-6E1BEDB78B22}
+	EndGlobalSection
+EndGlobal

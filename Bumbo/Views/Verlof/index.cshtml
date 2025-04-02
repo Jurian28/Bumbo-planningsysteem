@@ -1,0 +1,48 @@
+@model IEnumerable<BumboDB.Models.TimeOffRequest>
+
+@{
+    ViewData["Title"] = "Time Off Requests";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Verlof aanvragen</h2>
+
+    <div class="row">
+        @foreach (var request in Model)
+        {
+            var statusClass = request.IsApproved switch
+            {
+                true => "bg-success text-white",
+                false => "bg-danger text-white",
+                null => "bg-warning text-dark"
+            };
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header @statusClass">
+                        <p class="mb-0">Startdatum: @request.StartDate.ToShortDateString() - Einddatum: @request.EndDate.ToShortDateString()</p>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Reden:</strong> @request.Reason</p>
+                        @if (request.IsApproved == null)
+                        {
+                            <div class="d-flex justify-content-between">
+                                <a asp-action="Edit" asp-route-id="@request.TimeOffRequestId" class="btn btn-warning btn-edit">bewerken</a>
+                                <form asp-action="Cancel" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="@request.TimeOffRequestId" />
+                                    <button type="submit" class="btn btn-danger btn-cancel">Annuleren</button>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-action="Create" class="btn btn-primary btn-lg shadow-sm">+</a>
+    </div>
+</div>
+
+<script src="~/js/Verlof.js" asp-append-version="true"></script>

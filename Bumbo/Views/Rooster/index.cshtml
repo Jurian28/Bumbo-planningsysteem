@@ -1,0 +1,54 @@
+@model Bumbo.Models.RoosterWeekViewModel
+@{
+    ViewData["Title"] = "Werkrooster";
+}
+
+<div class="container mt-5">
+    <!-- Header met publiceren knop -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="page-title">Werkrooster</h1>
+        <a class="btn btn-success shadow-sm" href="@Url.Action("PostSchedule", "Rooster", new { year = Model.Year, week = Model.Week })">
+            <i class="fa-solid fa-paper-plane"></i> Publiceren
+        </a>
+    </div>
+    
+    <!-- Navigatieknoppen voor weken -->
+    <div class="d-flex justify-content-center align-items-center mb-5">
+        <a href="@Url.Action("PrevWeek", "Rooster", new { currentYear = Model.Year, currentWeek = Model.Week })"
+           class="btn btn-outline-secondary rounded-circle mx-3 shadow-sm" title="Vorige week">&#8592;</a>
+
+        <h3 class="text-center text-dark mb-0">@Model.BeginDate.ToString("dd MMM yyyy") - @Model.EndDate.ToString("dd MMM yyyy")</h3>
+
+        <a href="@Url.Action("NextWeek", "Rooster", new { currentYear = Model.Year, currentWeek = Model.Week })"
+           class="btn btn-outline-secondary rounded-circle mx-3 shadow-sm" title="Volgende week">&#8594;</a>
+    </div>
+
+    <!-- Rooster kaarten per dag -->
+    <div class="row g-4">
+        @foreach (var day in Model.Days)
+        {
+            <div class="col-lg-4 col-md-6">
+                <div class="card shadow-sm">
+                    <!-- Dag header -->
+                    <div class="card-header text-white fw-bold text-center bg-dark">
+                        <a class="text-white text-decoration-none" href="@Url.Action("DayOverview", "Rooster", new { year = Model.Year, weekNumber = Model.Week, date = day.Date })">
+                            @day.Date.ToString("dddd, dd MMM")
+                        </a>
+                    </div>
+
+                    <!-- Afdelingen en uren -->
+                    <div class="card-body">
+                        @foreach (var department in day.DepartmentHours)
+                        {
+                            <div class="d-flex justify-content-between align-items-center py-2 px-3 mb-2 rounded border 
+                                 @(department.Value.CurrentHours < department.Value.RequiredHours ? "border-danger" : "border-success")">
+                                <h6 class="mb-0">@department.Key</h6>
+                                <small>@department.Value.CurrentHours / @department.Value.RequiredHours Uren</small>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,161 @@
+@model EmployeeRoosterViewModel
+
+@{
+    ViewData["Title"] = "Mijn Diensten";
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Mijn Diensten</h2>
+
+    <div class="row">
+        <div class="col-12 mb-4">
+            <h3>Mijn diensten:</h3>
+            <div class="row user-shifts">
+                @foreach (var shift in Model.UserShifts)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4 dienst">
+                        <div class="card shadow-sm @(shift.IsAvailableForSwap ? "border-warning" : "")">
+                            <div class="card-body">
+                                <h5 class="card-title">@shift.Department.Name</h5>
+                                <p class="card-text"><strong>Filiaal:</strong> @shift.Chapter.Name</p>
+                                <p class="card-text"><strong>Datum:</strong> @shift.Date.ToString("dddd dd MMMM yyyy")</p>
+                                <p class="card-text"><strong>Starttijd:</strong> @shift.StartTime.ToString("HH:mm")</p>
+                                <p class="card-text"><strong>Eindtijd:</strong> @shift.EndTime.ToString("HH:mm")</p>
+                                <form asp-action="RequestSwap" method="post" class="request-swap-form">
+                                    <input type="hidden" name="shiftId" value="@shift.ShiftId" />
+                                    <button type="button" class="btn btn-warning request-swap-button">Ruilverzoek</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-12">
+            <h3>Beschikbare diensten:</h3>
+            <div class="row available-shifts">
+                @foreach (var shift in Model.AvailableShifts)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4 dienst">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">@shift.Department.Name</h5>
+                                <p class="card-text"><strong>Filiaal:</strong> @shift.Chapter.Name</p>
+                                <p class="card-text"><strong>Datum:</strong> @shift.Date.ToString("dddd dd MMMM yyyy")</p>
+                                <p class="card-text"><strong>Starttijd:</strong> @shift.StartTime.ToString("HH:mm")</p>
+                                <p class="card-text"><strong>Eindtijd:</strong> @shift.EndTime.ToString("HH:mm")</p>
+                                <form asp-action="TakeOverShift" method="post" class="take-over-form">
+                                    <input type="hidden" name="shiftId" value="@shift.ShiftId" />
+                                    <button type="submit" class="btn btn-success">Overnemen</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popup-message" class="popup hidden" role="alert" aria-live="assertive"></div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Bevestiging</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Weet je zeker dat je dit ruilverzoek wil aanvragen?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Nee</button>
+                <button type="button" class="btn btn-primary" id="confirmButton">Ja</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("DOM is geladen");
+
+            const takeOverForms = document.querySelectorAll(".take-over-form");
+            const requestSwapForms = document.querySelectorAll(".request-swap-form");
+            const popup = document.getElementById("popup-message");
+            let currentForm = null;
+
+            const showPopup = (message, isSuccess) => {
+                if (!popup) return;
+                popup.textContent = message;
+                popup.className = `popup ${isSuccess ? "success" : "error"}`;
+                popup.classList.remove("hidden");
+                setTimeout(() => {
+                    popup.classList.add("hidden");
+                }, 3000);
+            };
+
+            const handleFormSubmit = (forms, successMessage) => {
+                forms.forEach(form => {
+                    form.addEventListener("submit", async function (event) {
+                        event.preventDefault();
+                        const formData = new FormData(form);
+                        try {
+                            const response = await fetch(form.action, {
+                                method: form.method || "POST",
+                                body: formData,
+                                headers: {
+                                    "X-Requested-With": "XMLHttpRequest"
+                                }
+                            });
+
+                            if (!response.ok) throw new Error(`Fout: ${response.statusText}`);
+
+                            const result = await response.json();
+                            const isSuccess = result.success;
+                            const message = result.message || successMessage;
+
+                            showPopup(message, isSuccess);
+
+                            if (isSuccess) {
+                                const shiftElement = form.closest(".dienst");
+                                const userShiftsContainer = document.querySelector(".user-shifts");
+                                const availableShiftsContainer = document.querySelector(".available-shifts");
+                                userShiftsContainer.appendChild(shiftElement);
+                                availableShiftsContainer.removeChild(shiftElement);
+                            }
+                        } catch (error) {
+                            console.error("Fout tijdens fetch:", error);
+                        }
+                    });
+                });
+            };
+
+            handleFormSubmit(takeOverForms, "Je hebt de dienst overgenomen.");
+
+            requestSwapForms.forEach(form => {
+                form.querySelector(".request-swap-button").addEventListener("click", function () {
+                    currentForm = form;
+                    $('#confirmModal').modal('show');
+                });
+            });
+
+            document.getElementById("confirmButton").addEventListener("click", function () {
+                if (currentForm) {
+                    currentForm.submit();
+                    $('#confirmModal').modal('hide');
+                }
+            });
+        });
+    </script>
+}

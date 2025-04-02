@@ -1,0 +1,56 @@
+.card {
+    display: flex;
+    flex-direction: row; /* Ensure the status box is to the left of the card content */
+    align-items: flex-start;
+    padding: 10px;
+    background-color: white;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.status-box {
+    width: 10px;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.approved {
+    background-color: green;
+}
+
+.rejected {
+    background-color: red;
+}
+
+.pending {
+    background-color: gray;
+}
+
+.sticky-btn {
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 50%;
+}
+
+@media (max-width: 400px) {
+    body {
+        padding-top: 80px; /* Increase padding to create more space */
+    }
+
+    h2 {
+        margin-top: 20px; /* Add space between the title and the navbar */
+        margin-bottom: 20px;
+    }
+
+    form {
+        margin-top: 40px; /* Add space between the form and the title */
+    }
+
+    .sticky-btn {
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+    }
+}

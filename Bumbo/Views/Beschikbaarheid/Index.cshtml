@@ -1,0 +1,88 @@
+@model Bumbo.Models.WeekAvailabilityViewModel
+
+@{
+    ViewData["Title"] = "Week Overview";
+    var daysOfWeek = new[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Week Overview</title>
+    <link rel="stylesheet" href="~/css/Index.cshtml.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".toggle-button").click(function() {
+                $(this).next(".collapsible-content").toggle();
+            });
+        });
+    </script>
+</head>
+<body>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong> There were some issues with the input data.
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <form method="post" asp-action="UpdateAvailability">
+        <input type="hidden" name="Year" value="@Model.Year" />
+        <input type="hidden" name="Week" value="@Model.Week" />
+        <div class="week-overview">
+            <div class="week-selector">
+                <button class="arrow-button left" formaction="@Url.Action("Index", new { year = Model.Year, week = Model.Week > 1 ? Model.Week - 1 : 52 })">&larr;</button>
+                <h2>@Model.Year Week @Model.Week (@Model.StartDate.ToShortDateString() - @Model.EndDate.ToShortDateString())</h2>
+                <button class="arrow-button right" formaction="@Url.Action("Index", new { year = Model.Year, week = Model.Week < 52 ? Model.Week + 1 : 1 })">&rarr;</button>
+            </div>
+
+            @if (Model.Availabilities != null && Model.Availabilities.Any())
+            {
+                @for (int i = 0; i < daysOfWeek.Length; i++)
+                {
+                    var day = daysOfWeek[i];
+                    var date = Model.StartDate.AddDays(i);
+                    var availability = Model.Availabilities?.FirstOrDefault(a => a.Day == date);
+
+                    <div class="day-card">
+                        <h3>@day - @date.ToShortDateString()</h3>
+                        <div class="toggle-container">
+                            <label class="switch">
+                                <input type="hidden" name="Availabilities[@i].IsAvailable" value="false" />
+                                <input type="checkbox" name="Availabilities[@i].IsAvailable" value="true" @(availability?.IsAvailable == true ? "checked" : "")>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <button type="button" class="toggle-button">▼</button>
+                        <div class="collapsible-content" style="display:none;">
+                            <label>School Hours:</label>
+                            <input type="number" name="Availabilities[@i].HoursWorkedSchool" value="@availability?.HoursWorkedSchool" />
+                            <label>Shift Start Time:</label>
+                            <input type="time" name="Availabilities[@i].StartTime" value="@availability?.StartTime.ToString("HH:mm")" />
+                            <label>Shift End Time:</label>
+                            <input type="time" name="Availabilities[@i].EndTime" value="@availability?.EndTime.ToString("HH:mm")" />
+                        </div>
+                        <input type="hidden" name="Availabilities[@i].Day" value="@date" />
+                        <input type="hidden" name="Availabilities[@i].AvailabilityId" value="@availability?.AvailabilityId" />
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No availability data found for this week.</p>
+            }
+        </div>
+        <button type="submit" class="save-button">Save</button>
+    </form>
+
+    <script src="/js/Beschikbaarheid.js" asp-append-version="true"></script>
+</body>
+</html>

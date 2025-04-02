@@ -1,0 +1,70 @@
+@page
+@model Bumbo.Views.Profile.index
+
+@{
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Update Profile</h2>
+    <form id="updateProfileForm" asp-action="UpdateProfile" asp-controller="Profile" method="post" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required />
+            <div class="invalid-feedback">Please enter a valid email.</div>
+        </div>
+        <div class="form-group">
+            <label for="current-password">Current Password:</label>
+            <input type="password" id="current-password" name="currentPassword" class="form-control" required />
+            <div class="invalid-feedback">Please enter your current password.</div>
+        </div>
+        <div class="form-group">
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" name="newPassword" class="form-control" required />
+            <div class="invalid-feedback">Please enter a new password.</div>
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+</div>
+
+<div id="popup" class="alert alert-dismissible fade show hidden" role="alert">
+    <span id="popupMessage"></span>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById('updateProfileForm');
+            const popup = document.getElementById('popup');
+
+            const showPopup = (message, isSuccess) => {
+                const popupMessage = document.getElementById('popupMessage');
+                popupMessage.textContent = message;
+                popup.className = `alert alert-${isSuccess ? "success" : "danger"} alert-dismissible fade show`;
+                popup.classList.remove("hidden");
+                setTimeout(() => {
+                    popup.classList.add("hidden");
+                }, 3000);
+            };
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData
+                });
+                const result = await response.json();
+                showPopup(result.message, result.success);
+            });
+        });
+
+        function closePopup() {
+            document.getElementById('popup').classList.add('hidden');
+        }
+    </script>
+}

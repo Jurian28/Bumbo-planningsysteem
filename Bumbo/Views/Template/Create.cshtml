@@ -1,0 +1,39 @@
+@page
+@using Bumbo.Resources
+@model Bumbo.Views.Template.Create
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Create Template</title>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3>@Resource.MaakNieuweTemplate</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="/Template/CreateTemplate">
+                        <div class="form-group">
+                            <label for="title">@Resource.TitelLabel</label>
+                            <input type="text" class="form-control" id="title" name="Name" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">@Resource.OpslaanButton</button>
+                        <a href="@Url.Action("Index", "Template")" class="btn btn-secondary">@Resource.Annuleren</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

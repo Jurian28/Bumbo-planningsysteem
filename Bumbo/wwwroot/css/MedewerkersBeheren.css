@@ -1,0 +1,101 @@
+﻿.horizontal-container {
+    display: flex; /* Enables horizontal layout */
+    align-items: flex-start; /* Aligns items to the top */
+    gap: 20px; /* Adds space between employee grid and button */
+    padding: 20px; /* Optional: Adds padding around the container */
+}
+
+/* Employee grid styles (unchanged from your previous styles) */
+.employee-grid {
+    display: flex;
+    flex-wrap: wrap; /* Ensures cards wrap to the next row if needed */
+    gap: 20px; /* Adds space between cards */
+    justify-content: flex-start; /* Align cards to the left */
+    padding: 10px;
+}
+
+/* Individual employee card */
+.employee-card, .fired-employee-card {
+    display: flex;
+    flex-direction: column; /* Ensures the content stacks vertically */
+    justify-content: space-between; /* Even spacing between elements */
+    align-items: flex-start; /* Aligns content to the left */
+    padding: 15px;
+    background-color: #e0e0e0; /* Light gray for card background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+    width: 250px; /* Fixed width for each card */
+    min-height: 150px; /* Ensures cards have a consistent height */
+}
+
+.fired-employee-card {
+    color: darkgrey;
+}
+
+/* Add Button container */
+.add-button-container {
+    margin-left: auto; /* Pushes the button to the far right */
+    align-self: flex-start; /* Aligns the button to the top */
+}
+
+/* Optional: Add Button Style */
+.add-button {
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+/* General form styling */
+.-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Centered text styling */
+.form-title {
+    text-align: center;
+    color: var(--primary);
+    padding: 10px;
+}
+
+.form-description {
+    text-align: center;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Label styling */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #272824;
+}
+
+/* Input field styling */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Span text styling */
+.form-text {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #272824;
+}

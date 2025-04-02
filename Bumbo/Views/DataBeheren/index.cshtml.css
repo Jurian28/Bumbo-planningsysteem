@@ -1,0 +1,148 @@
+/* General styles */
+form {
+    background: black;
+    border-radius: 0.625rem; /* 10px to rem */
+    box-shadow: 0rem 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* 0px 4px 8px to rem */
+    padding: 1.25rem; /* 20px to rem */
+    max-width: 40.625rem; /* 650px to rem */
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Title-Data {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    padding-top: 1.25rem; /* 20px to rem */
+}
+
+/* Week Selector */
+#week-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.9375rem; /* 15px to rem */
+    color: var(--primary-text);
+    margin-bottom: 1.25rem; /* 20px to rem */
+}
+
+#week-selector button {
+    background-color: var(--tonal);
+    color: var(--primary-text);
+    border: 1px solid black;
+    padding: 0.625rem 0.9375rem; /* 10px 15px to rem */
+    border-radius: 0.3125rem; /* 5px to rem */
+    transition: background-color 0.3s ease;
+}
+
+#week-selector button:hover {
+    opacity: 0.8;
+}
+
+#week-selector p {
+    margin: 0;
+    color: var(--primary-text);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Table Styles */
+table {
+    width: 6.25rem; /* 100px to rem */
+    border-collapse: collapse;
+    margin: 1.25rem auto; /* 20px to rem, center the table */
+    overflow-x: hidden;
+}
+
+thead th {
+    background-color: #f2f2f2;
+    color: #272824;
+    padding: 0.625rem; /* 10px to rem */
+    font-weight: bold;
+    text-align: left;
+}
+
+tbody th {
+    background-color: white;
+    color: #272824;
+    padding: 0.625rem; /* 10px to rem */
+    text-align: left;
+}
+
+td, th {
+    border: 0.0625rem solid #ddd; /* 1px to rem */
+    padding: 0.5rem; /* 8px to rem */
+    text-align: left;
+    color: #272824;
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 0.5rem; /* 8px to rem */
+    border-radius: 5rem;
+    outline: none;
+    background-color: white;
+    border: 0.0625rem solid var(--primary-text); /* 1px to rem */
+}
+
+/* Submit button */
+button[type="submit"] {
+    background-color: var(--tonal);
+    color: var(--primary-text);
+    border: 1px solid black;
+    padding: 0.75rem 1.5625rem; /* 12px 25px to rem */
+    border-radius: 5rem;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    margin: 1.5rem auto 0; /* Center the button and add space above */
+    display: block; /* Make the button a block element */
+    text-align: center; /* Center the text inside the button */
+}
+
+button[type="submit"]:hover {
+    opacity: 0.8;
+}
+
+/* Triangle button */
+.triangle-button {
+    width: 2.5rem; /* 40px to rem */
+    height: 2.5rem; /* 40px to rem */
+    background-color: var(--primary-text);
+    color: var(--primary-text);
+    border: 1px solid black;
+    border-radius: 0.3125rem; /* 5px to rem */
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.triangle-button:hover {
+    background-color: var(--primary-text);
+    opacity: 0.8;
+}
+
+.triangle-button.prev::before,
+.triangle-button.next::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+}
+
+.triangle-button.prev::before {
+    border-top: 0.625rem solid transparent; /* 10px to rem */
+    border-bottom: 0.625rem solid transparent; /* 10px to rem */
+    border-right: 0.9375rem solid var(--primary-text); /* 15px to rem */
+}
+
+.triangle-button.next::before {
+    border-top: 0.625rem solid transparent; /* 10px to rem */
+    border-bottom: 0.625rem solid transparent; /* 10px to rem */
+    border-left: 0.9375rem solid var(--primary-text); /* 15px to rem */
+}

@@ -1,0 +1,53 @@
+@using Bumbo.Resources
+@model IEnumerable<BumboDB.Models.Norm>
+
+@{
+    var mostRecentNormId = Model.OrderByDescending(n => n.NormId).FirstOrDefault()?.NormId;
+}
+
+<h2 class="normeringen-title">@Resource.NormeringenTitle</h2>
+<table class="history-table">
+    <thead>
+    <tr>
+        <th>@Resource.Datum</th>
+        <th>@Resource.Vers</th>
+        <th>@Resource.Vulploeg</th>
+        <th>@Resource.Spiegelen</th>
+        <th>@Resource.Kassa</th>
+        <th>@Resource.Coli_uitladen</th>
+        <th>@Resource.Acties</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var norm in Model)
+    {
+        <tr class="@(norm.NormId == mostRecentNormId ? "recent-norm" : "")">
+            <td>@norm.Date.ToString("MM-dd-yyyy")</td>
+            <td>@norm.FreshCustomersPerHour klanten per uur</td>
+            <td>@norm.ShelfFillingSeconds seconden per coli</td>
+            <td>@norm.FacingSecondsPerMeter seconden per meter</td>
+            <td>@norm.CashierCustomersPerHour klanten per uur</td>
+            <td>@norm.UnloadingSeconds seconden uitladen</td>
+            <td>
+                <form method="post" action="/NormeringHistory/DeleteNorm" style="display:inline;">
+                    <input type="hidden" name="NormId" value="@norm.NormId"/>
+                    <button type="submit" class="btn btn-primary">Verwijder Normering</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div class="button-container">
+    <form method="get" action="/NormeringHistory/CreateNorm" style="display:inline;">
+        <button type="submit" class="btn btn-secondaryy">Maak Normering</button>
+    </form>
+    @if (mostRecentNormId != null)
+    {
+        <form method="get" action="/NormeringHistory/EditNorm" style="display:inline;">
+            <input type="hidden" name="NormId" value="@mostRecentNormId"/>
+            <button type="submit" class="btn btn-primary">Wijzig Normering</button>
+        </form>
+    }
+</div>

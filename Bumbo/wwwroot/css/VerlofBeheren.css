@@ -1,0 +1,55 @@
+﻿/* Table styling */
+.request-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    overflow-x: hidden;
+}
+
+.request-table th, .request-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: #272824;
+}
+
+.request-table th {
+    background-color: #f2f2f2;
+    color: #272824;
+}
+
+/* Button styling */
+.accepted-button, .declined-button, .standard-button {
+    display: inline-block;
+    padding: 10px 21px;
+    background-color: white;
+    border: 1px solid #272824;
+    border-radius: 0;
+    color: #272824;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.accepted-button {
+    background-color: #02fa34;
+    color: #fff;
+}
+
+.declined-button {
+    background-color: #de0202;
+    color: #fff;
+}
+
+.accepted-button:hover, .declined-button:hover, .standard-button:hover {
+    background-color: #f2f2f2;
+}
+
+/* Title styling */
+.Verlofbeheren-title {
+    color: var(--primary);
+    text-align: center;
+    margin-top: 1rem;
+}

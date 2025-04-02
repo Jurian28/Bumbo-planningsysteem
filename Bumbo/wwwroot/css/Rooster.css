@@ -1,0 +1,147 @@
+﻿.schedule-week {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.schedule-day {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.schedule-department {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100px;
+}   
+
+.WeekSelector{
+    display: flex;
+    justify-self: center;
+    margin: 20px;
+}
+
+.week-selector-button {
+    color: black;
+    margin-inline: 10px;
+    text-decoration: none;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.plus-icon {
+    height: 24px;
+    width: auto;
+    margin: 20px;
+
+}
+
+
+.delete-icon {
+    height: 24px;
+    width: auto;
+    margin: 20px;
+
+}
+
+.Shift {
+    width: 200px;
+    height: 100px;
+    background-color: white;
+    margin: 20px;
+    border: solid 1px;
+    border-radius: 5px;
+}
+
+   
+
+.DepartmentP{
+    padding: 20px;
+    width: 100vw;
+    margin: 20px;
+}
+
+.Department {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+.plus-icon-div {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+.AllShifts {
+    margin-left: 65px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.left-container {
+    border-right: 2px solid black;
+    width: 25vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    justify-content: center;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-shift-container {
+    display: flex;
+}
+
+.list-available-employees {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 50px;
+    margin: 25px;
+}
+
+.available-employee {
+    background-color: lightgrey;
+    padding: 25px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.DepartmentWeekOV {
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.post-schedule{
+    display: flex;
+    justify-content: end;
+}
+
+.post-schedule-button {
+    margin: 15px;
+    padding: 15px;
+    background-color: darkgrey;
+    text-decoration: none;
+    color: white;
+    border-radius: 15px;
+}
+
+.post-schedule-button:hover {
+    background-color: dimgrey;
+}

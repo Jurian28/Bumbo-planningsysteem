@@ -1,0 +1,59 @@
+﻿@model BumboDB.Models.Shift
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center text-white bg-dark">
+                    <h2>Edit Shift</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="SaveEditedShift" asp-controller="Rooster">
+                        <input type="hidden" name="ShiftId" value="@Model.ShiftId" />
+                        <input type="hidden" name="date" value="@Model.Date" />
+                        <h1>@Model.Employee.Name - @Model.Department.Name</h1>
+                        <div class="form-group">
+                            <label for="StartTime">Start Time:</label>
+                            <select id="StartTime" name="beginTime" class="form-control">
+                                @for (var hour = 0; hour < 24; hour++)
+                                {
+                                    for (var minute = 0; minute < 60; minute += 30)
+                                    {
+                                        var time = new TimeSpan(hour, minute, 0);
+                                        var timeString = time.ToString(@"hh\:mm");
+                                        var isSelected = timeString == Model.StartTime.ToString("HH:mm") ? "selected" : "";
+
+                                        <option value="@timeString" selected="@(isSelected == "selected")">
+                                            @timeString
+                                        </option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="EndTime">End Time:</label>
+                            <select id="EndTime" name="endTime" class="form-control">
+                                @for (var hour = 0; hour < 24; hour++)
+                                {
+                                    for (var minute = 0; minute < 60; minute += 30)
+                                    {
+                                        var time = new TimeSpan(hour, minute, 0);
+                                        var timeString = time.ToString(@"hh\:mm");
+                                        var isSelected = timeString == Model.EndTime.ToString("HH:mm") ? "selected" : "";
+
+                                        <option value="@timeString" selected="@(isSelected == "selected")">
+                                            @timeString
+                                        </option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

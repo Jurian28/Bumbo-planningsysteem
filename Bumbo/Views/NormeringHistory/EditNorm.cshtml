@@ -1,0 +1,45 @@
+@using Bumbo.Resources
+@model BumboDB.Models.Norm
+<link rel="stylesheet" href="~/css/UpdateNorm.css">
+<link rel="stylesheet" href="~/css/panel.css">
+
+
+<h2 class="form-title">Normering wijzigen</h2>
+<p class="form-description">Voer de onderstaande gegevens in.</p>
+
+<form method="post" action="@Url.Action("UpdateNorm", "NormeringHistory")">
+    <input type="hidden" name="NormId" value="@Model.NormId" />
+
+    <div class="form-group">
+        <label for="Date">@Resource.Datum</label>
+        <input type="date" class="form-control" id="Date" name="Date" value="@Model.Date.ToString("yyyy-MM-dd")" required />
+    </div>
+    <div class="form-group">
+        <label for="FreshCustomersPerHour">@Resource.Vers</label>
+        <input type="number" class="form-control" id="FreshCustomersPerHour" name="FreshCustomersPerHour" value="@Model.FreshCustomersPerHour" min="0" required />
+        <span class="form-text">klanten per uur</span>
+    </div>
+    <div class="form-group">
+        <label for="ShelfFillingSeconds">@Resource.Vulploeg</label>
+        <input type="number" class="form-control" id="ShelfFillingSeconds" name="ShelfFillingSeconds" value="@Model.ShelfFillingSeconds" min="0" required />
+        <span class="form-text">seconden per colli</span>
+    </div>
+    <div class="form-group">
+        <label for="FacingSecondsPerMeter">@Resource.Spiegelen</label>
+        <input type="number" class="form-control" id="FacingSecondsPerMeter" name="FacingSecondsPerMeter" value="@Model.FacingSecondsPerMeter" min="0" required />
+        <span class="form-text">seconden per meter</span>
+    </div>
+    <div class="form-group">
+        <label for="CashierCustomersPerHour">@Resource.Kassa</label>
+        <input type="number" class="form-control" id="CashierCustomersPerHour" name="CashierCustomersPerHour" value="@Model.CashierCustomersPerHour" min="0" required />
+        <span class="form-text">klanten per uur</span>
+    </div>
+    <div class="form-group">
+        <label for="UnloadingSeconds">@Resource.Coli_uitladen</label>
+        <input type="number" class="form-control" id="UnloadingSeconds" name="UnloadingSeconds" value="@Model.UnloadingSeconds" min="0" required />
+        <span class="form-text">seconden per coli uitladen</span>
+    </div>
+
+    <button type="submit" class="btn btn-secondary-Ann">@Resource.Annuleren</button>
+    <button type="submit" class="btn btn-primary">@Resource.Wijzigen</button>
+</form>

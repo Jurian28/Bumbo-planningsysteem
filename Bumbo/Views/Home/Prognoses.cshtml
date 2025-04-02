@@ -1,0 +1,30 @@
+﻿@model IEnumerable<BumboDB.Models.PrognosesWeek>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2 class="text-center my-4">Bestaande Prognoses</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var prognose in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">Jaar @prognose.Year / Week @prognose.Week</h4>
+                        <p class="card-text">Begindatum: @prognose.BeginDate</p>
+                        <p class="card-text">Einddatum: @prognose.EndDate</p>
+                        <form method="get" action="@Url.Action("ViewPrognosis", "Home")">
+                            <input type="hidden" name="year" value="@prognose.Year" />
+                            <input type="hidden" name="week" value="@prognose.Week" />
+                            <button type="submit" class="btn btn-primary">Bekijken</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

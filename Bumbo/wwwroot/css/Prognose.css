@@ -1,0 +1,165 @@
+﻿.day-name-background {
+    background-color: silver;
+    height: 2.75rem;
+    width: 15rem;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.template-button {
+    width: 50rem;
+    height: 2.75rem;
+    border: 1px solid var(--stroke);
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.centered-title {
+    text-align: center;
+    color: var(--primary);
+}
+
+.template-days {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 25px;
+    color: var(--primary-text);
+}
+
+.day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
+}
+
+.data-request {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#data-result {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.prognosis-table {
+    margin-top: 100px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.prognosis-table th, td {
+    border: 2px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+.confirm-templates {
+    background-color: var(--tonal);
+    color: var(--primary-text);
+    height: 50px;
+    width: 150px;
+    margin-top: 25px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 5rem;
+    border: 1px solid var(--stroke);
+}
+
+.confirm-templates:hover {
+    opacity: 0.9;
+}   
+
+.Title-Prog {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    padding-top: 20px;
+}
+
+.week-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    color: var(--primary-text);
+    gap: 10px;
+}
+
+.prognosis-table tr th, .prognosis-table tr td {
+    color: black;
+}
+
+.prognosis-table tr td input {
+    border: none;
+    height: 100%;
+    width: 100%;
+    color: var(--primary-text); 
+    background: none;
+    text-align: center;
+}
+
+/* Prognoses.cshtml */
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prognosis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5rem;
+    row-gap: 1rem;
+}
+
+.prognose {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgrey;
+    width: 35rem;
+    height: 7.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--stroke);
+}
+
+.prognose-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.prognose-data {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.overview-button {
+    background-color: var(--tonal);
+    color: var(--primary-text);
+    height: 50px;
+    width: 150px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 5rem;
+    border: 1px solid var(--stroke);
+}
+
+.overview-button:hover {
+    background-color: lightgray;
+}

@@ -1,0 +1,99 @@
+﻿@using Bumbo.Resources
+@using Microsoft.AspNetCore.Html
+
+@model Bumbo.Models.DataBeherenCombinedViewModel
+
+
+@functions {
+    public IHtmlContent GiveTextInput(string name, string value = "") {
+        return new HtmlString($@"
+            <input type='number' min='0' max='100000000' pattern='\d*' name='{name}' value='{value}' class='form-control' />
+        ");
+    }
+}
+
+@functions {
+    public IHtmlContent setValue(int value) {
+        return new HtmlString($@"
+            {value}
+        ");
+    }
+}
+
+@functions {
+    public IHtmlContent GiveSelectionInput(string name, string value = "") {
+        return new HtmlString($@"
+            <select name='{name}' class='form-control'>
+                <option value='{value}'>{value}</option>
+                <option value='Eerste Kerstdag'>Eerste Kerstdag</option>
+                <option value='Tweede Kerstdag'>Tweede Kerstdag</option>
+                <option value='Pasen'>Pasen</option>
+                <option value='Oudjaars Dag'>Oudjaars Dag</option>
+            </select>
+        ");
+    }
+}
+
+@{
+    var arrayNumbers = Model.Numbers.ToArray();
+    var weekNumber = arrayNumbers[0];
+    var yearNumber = arrayNumbers[1];
+}
+
+<div class="container mt-5" style="max-width: 1200px;">
+    <h2 class="text-center mb-4">@Resource.DataNAV</h2>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <button class="btn btn-secondary" onclick="clickPrevWeek()">&#8592;</button>
+        <span id="week-number" class="h4 mb-0">@Resource.Week @setValue(weekNumber), @setValue(yearNumber)</span>
+        <button class="btn btn-secondary" onclick="clickNextWeek()">&#8594;</button>
+    </div>
+
+    <form method="post" asp-action="SubmitForm">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th></th>
+                        <th>@Resource.AantalBezoekers</th>
+                        <th>@Resource.AantalVulkarren</th>
+                        <th>@Resource.SpecialeFeestdagen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 0;
+                        string stringCustomers = "";
+                        string stringCargo = "";
+                        string stringHoliday = "";
+
+                        foreach (var day in new[] { "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag" })
+                        {
+                            if (Model != null)
+                            {
+                                var array = Model.Histories_.ToArray();
+                                if (array.Length > i && array[i] != null)
+                                {
+                                    stringCustomers = array[i].Customers.ToString();
+                                    stringCargo = array[i].CargoCrates.ToString();
+                                    stringHoliday = array[i].Holiday;
+                                }
+                            }
+                    <tr>
+                        <th>@Resource.ResourceManager.GetString(day)</th>
+                        <td>@GiveTextInput($"{day.Substring(0, 1)}1", stringCustomers)</td>
+                        <td>@GiveTextInput($"{day.Substring(0, 1)}2", stringCargo)</td>
+                        <td>@GiveSelectionInput($"{day.Substring(0, 1)}3", stringHoliday)</td>
+                    </tr>
+                            i++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">@Resource.OpslaanButton</button>
+        </div>
+    </form>
+</div>
+
+<script src="~/js/DataBeheren.js" asp-append-version="true"></script>

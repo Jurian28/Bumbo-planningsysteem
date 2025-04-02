@@ -1,0 +1,35 @@
+﻿@model Bumbo.Models.VerlofBeherenViewModel
+<link rel="stylesheet" href="/css/VerlofBeheren.css">
+
+<h2 class="Verlofbeheren-title">Verlof beheren</h2>
+
+<table class="request-table">
+    <thead>
+        <tr><th>UserName</th><th>Startdate</th><th>Enddate</th><th>Reason</th></tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.timeOffRequests.Count(); i++) {
+            <tr>
+                <td>@Model.employees[i].UserName</td>
+                <td>@Model.timeOffRequests[i].StartDate</td>
+                <td>@Model.timeOffRequests[i].EndDate</td>
+                <td>@Model.timeOffRequests[i].Reason</td>
+                @if (!Model.timeOffRequests[i].Ziek) {
+
+                    @if (@Model.timeOffRequests[i].IsApproved == true) {
+                        <td><input type="button" class="accepted-button" value="accept" onclick="location.href='@Url.Action("Accept", "VerlofBeheren", new {id = @Model.timeOffRequests[i].TimeOffRequestId})'" /></td>
+                        <td><input type="button" class="standard-button" value="decline" onclick="location.href='@Url.Action("Decline", "VerlofBeheren", new {id = @Model.timeOffRequests[i].TimeOffRequestId})'" /></td>
+                    }
+                    else if (@Model.timeOffRequests[i].IsApproved == false) {
+                        <td><input type="button" class="standard-button" value="accept" onclick="location.href='@Url.Action("Accept", "VerlofBeheren", new {id = @Model.timeOffRequests[i].TimeOffRequestId})'" /></td>
+                        <td><input type="button" class="declined-button" value="decline" onclick="location.href='@Url.Action("Decline", "VerlofBeheren", new {id = @Model.timeOffRequests[i].TimeOffRequestId})'" /></td>
+                    }
+                    else {
+                        <td><input type="button" class="standard-button" value="accept" onclick="location.href='@Url.Action("Accept", "VerlofBeheren", new {id = @Model.timeOffRequests[i].TimeOffRequestId})'" /></td>
+                        <td><input type="button" class="standard-button" value="decline" onclick="location.href='@Url.Action("Decline", "VerlofBeheren", new {id = @Model.timeOffRequests[i].TimeOffRequestId})'" /></td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>

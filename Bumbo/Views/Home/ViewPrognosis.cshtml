@@ -1,0 +1,46 @@
+﻿@using Bumbo.Resources
+@model IEnumerable<Bumbo.Models.DepartmentResult>
+
+<link rel="stylesheet" href="~/css/Prognose.css" asp-append-version="true" />
+
+<h1 class="text-center my-4">@Model.FirstOrDefault()?.SelectedYear @Resource.Week @Model.FirstOrDefault()?.SelectedWeek</h1>
+
+<form method="post" action="/Home/SubmitPrognose/">
+    <input type="hidden" name="week" value="@Model.FirstOrDefault()?.SelectedWeek" />
+    <input type="hidden" name="year" value="@Model.FirstOrDefault()?.SelectedYear" />
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th>@Resource.Ma</th>
+                <th>@Resource.Di</th>
+                <th>@Resource.Wo</th>
+                <th>@Resource.Do</th>
+                <th>@Resource.Vr</th>
+                <th>@Resource.Za</th>
+                <th>@Resource.Zo</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var department in Model)
+            {
+                <tr>
+                    <td>@department.Name</td>
+                    @for (int i = 0; i < 7; i++)
+                    {
+                        <td>
+                            <input type="number" class="form-control" name="@(department.Name + "_" + Enum.GetName(typeof(DayOfWeek), i))" value="@department.Results[i]" />
+                        </td>
+                    }
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary">@Resource.OpslaanButton</button>
+    </div>
+</form>

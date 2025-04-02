@@ -1,0 +1,273 @@
+﻿
+.normering-table {
+    width: 50rem; 
+    border-collapse: collapse;
+    margin-bottom: 3rem; 
+}
+
+.normering-table th, .normering-table td {
+    border: 0.1rem solid var(--primary-text); 
+    padding: 1rem; 
+    text-align: left;
+}
+
+.normering-table th {
+    background-color: var(--tonal);
+    color: var(--primary-text);
+}
+
+.small-cell {
+    width: 8rem; 
+    height: 2rem; 
+    text-align: center;
+    padding: 0.5rem; 
+}
+
+.normering-table .norm-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 11.5rem; 
+    height: 15rem; 
+    padding: 0.5rem; 
+    justify-content: space-between; 
+}
+
+.normering-table .norm-form input {
+    width: 8rem; 
+    padding: 0.2rem; 
+    margin: 0.2rem 0; 
+    border-radius: 1px;
+}
+
+.normering-table .norm-form .save-button {
+    margin: 0.5rem 0; 
+}
+
+
+
+.save-button {
+    background-color: var(--primary);
+    border: none;
+    color: white;
+    padding: 5px 10px; 
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.8s ease;
+}
+
+
+
+
+.page-title {
+    text-align: left;
+    color: var(--primary);
+}   
+
+/* Templates section */
+.templates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+}
+
+.template-item {
+    position: relative;
+    background-color: var(--tonal);
+    padding: 1rem;
+    border-radius: 2rem;
+    text-align: left;
+    width: 18.5rem;
+    color: var(--primary-text);
+    transition: transform 0.8s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+}
+
+.template-item:hover {
+    background-color: var(--tonal);
+    transform: translateY(-5px);
+    color: black;
+}
+
+.template-item h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.template-item span {
+    font-size: 0.9rem;
+    color: black;
+}
+
+.template-item form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.template-item form p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+.template-item form p label {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.template-item form p input {
+    flex: 2;
+}
+
+.template-item .save-button {
+    align-self: flex-end;
+    margin-top: 10px;
+    background-color: var(--primary);
+    border: none;
+    color: white; 
+    padding: 10px 20px;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.template-item .save-button:hover {
+    /*background-color: var(--primary);*/
+}
+
+
+.icon-buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 0;
+}
+
+.edit-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: transform 0.8s ease;    
+}
+
+.edit-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Template navigation */
+.template-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    color: var(--primary-text);
+}
+
+.template-nav button {
+    background-color: var(--tonal);
+    border: 1px solid black;
+    padding: 10px 15px;
+    border-radius: 2rem;
+    color: black;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.8s ease;
+}
+
+
+
+.modal-content {
+    background-color: var(--tonal);
+    color: var(--primary-text);
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--primary-text);
+    padding: 1rem;
+}
+
+.modal-title {
+    color: var(--primary);
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-body .form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.modal-body .form-group label {
+    margin-bottom: 5px;
+    color: black;
+}
+
+.form-control {
+    background-color: white;
+    color: var(--primary-text);
+    border: 1px solid black;
+    border-radius: 2rem;
+    padding: 10px;
+}
+
+.btn-primary {
+    background-color:var(--primary);
+    border: none;
+    color: white; 
+    padding: 10px 20px;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: background-color 0.8s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--tonal);
+}   
+
+
+
+/* norm styles */
+.norm-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.norm-form p {
+    margin-right: 10px;
+}
+
+.save-button {
+    margin-left: auto;
+    background-color: var(--primary);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.8s ease;
+}
+
+.save-button:hover {
+    background-color: var(--tonal);
+}
+
+
+

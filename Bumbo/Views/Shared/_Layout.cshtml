@@ -1,0 +1,189 @@
+﻿@using Bumbo.Controllers
+@using Bumbo.Resources
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Bumbo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/Reset.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/panel.css" asp-append-version="true" />
+    <link href="/Bumbo.styles.css" rel="stylesheet" asp-append-version="true">
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <script src="~/js/Nav.js"></script>
+    <script src="~/js/Hamburger.js"></script>
+</head>
+<body>
+<header>
+    <svg class="logo" width="159" height="30" viewBox="0 0 159 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M75.4404 10.5886L71.8404 2.90253L69.5034 0.519531L74.7934 11.8316L75.4424 10.5886M62.0914 11.3486V26.6056H57.2684L59.6174 28.9866H64.4244V16.3496M91.7474 0.519531V26.6056H80.1304L82.4554 28.9866H94.0814V2.89653L91.7474 0.519531ZM80.1304 11.5766L72.9824 26.6056H69.2304L71.5624 28.9866H75.3214L80.1294 18.8836L80.1304 11.5766ZM109.932 23.8956V15.5666C110.897 15.4786 111.739 15.5816 112.635 16.0596C112.282 15.3677 111.783 14.7607 111.173 14.2806C109.932 13.2956 108.86 13.0626 107.589 13.1806V24.0976C108.422 24.1866 109.195 24.1416 109.932 23.8956ZM108.478 2.97353C108.143 2.97353 107.933 3.04953 107.589 3.04953V10.7596C108.376 10.7316 109.17 10.6996 109.932 10.4966V5.42853C110.272 5.42853 110.485 5.34853 110.82 5.34853C111.555 5.34853 112.196 5.44853 112.753 5.62953C112.283 3.96453 110.827 2.97353 108.478 2.97353ZM123.234 16.1966L121.276 14.2426C122.338 15.5166 122.528 17.1836 122.514 18.9496C122.51 23.7606 118.439 26.6496 108.928 26.6496H95.9344L98.2664 29.0246H111.258C120.776 29.0246 124.841 26.1186 124.86 21.3296C124.871 19.3596 124.661 17.5126 123.234 16.1966ZM121.586 6.91153C121.586 9.53753 120.459 11.4926 116.356 12.0496C118.608 12.3456 120.042 13.0086 120.96 13.9036V13.8966C123.245 13.0166 123.919 11.3486 123.919 9.28353C123.919 7.74353 123.429 6.55153 122.539 5.64153L120.279 3.33753L120.274 3.35853C121.115 4.25653 121.586 5.41853 121.586 6.91153ZM139.98 24.5466C139.297 22.5876 139.075 19.5666 139.075 15.9536C139.075 9.53753 139.766 4.95753 142.585 4.95753H142.825C142.283 3.43953 141.458 2.56753 140.237 2.56753C137.425 2.56753 136.73 7.15053 136.73 13.5806C136.73 19.7846 137.388 24.2656 139.98 24.5466ZM154.084 6.82253L152.366 5.08253C154.508 7.41053 155.792 10.3646 155.792 13.5806C155.792 21.0796 148.831 27.1466 140.237 27.1466C135.635 27.1466 131.502 25.4036 128.655 22.6316L130.888 24.9156V24.9126C133.748 27.7496 137.924 29.5346 142.585 29.5346C151.171 29.5346 158.131 23.4526 158.131 15.9536C158.131 12.4336 156.6 9.23553 154.084 6.82353M44.6974 24.3106C44.5386 23.7034 44.4603 23.0781 44.4644 22.4506V2.91853L42.1244 0.544531V20.0776C42.1244 21.8156 42.7014 23.9796 44.6664 24.3156L44.6974 24.3106ZM53.0504 0.544531V18.0616C53.0504 24.1286 50.4804 27.2016 41.8304 27.2016C37.5734 27.2016 34.5794 26.2436 32.7424 24.3816L32.8324 24.4786L34.7044 26.3406C36.4944 28.4676 39.6034 29.5706 44.1774 29.5706C52.8204 29.5706 55.3894 26.4986 55.3894 20.4616V2.91853L53.0504 0.544531ZM13.998 23.8586V15.5296C14.963 15.4416 15.805 15.5446 16.701 16.0226C16.348 15.3307 15.849 14.7237 15.239 14.2436C13.998 13.2586 12.926 13.0256 11.655 13.1436V24.0606C12.488 24.1496 13.261 24.1046 13.998 23.8586ZM12.544 2.93654C12.209 2.93654 11.999 3.01254 11.655 3.01254V10.7226C12.442 10.6946 13.236 10.6626 13.998 10.4596V5.39154C14.338 5.39154 14.551 5.31154 14.886 5.31154C15.621 5.31154 16.262 5.41154 16.819 5.59254C16.349 3.92754 14.893 2.93654 12.544 2.93654ZM27.3 16.1596L25.342 14.2056C26.404 15.4796 26.594 17.1466 26.58 18.9126C26.576 23.7236 22.505 26.6126 12.994 26.6126H0L2.332 28.9876H15.324C24.842 28.9876 28.907 26.0816 28.926 21.2926C28.937 19.3226 28.727 17.4756 27.3 16.1596ZM25.652 6.87454C25.652 9.50054 24.525 11.4556 20.422 12.0126C22.674 12.3086 24.108 12.9716 25.026 13.8666V13.8596C27.311 12.9796 27.985 11.3116 27.985 9.24654C27.985 7.70654 27.495 6.51454 26.605 5.60454L24.345 3.30054L24.34 3.32154C25.181 4.21954 25.652 5.38154 25.652 6.87454Z" fill="white"/>
+        <path d="M57.2683 26.605V0.519H69.5023L74.7923 11.831L80.6953 0.519H91.7473V26.605H80.1303V11.575L72.9823 26.605H69.2303L62.0903 11.348V26.605H57.2683ZM107.59 10.758C108.767 10.716 109.964 10.675 111.037 10.048C112.212 9.391 112.921 8.171 112.921 6.919C112.921 4.487 111.383 2.973 108.478 2.973C108.143 2.973 107.933 3.049 107.589 3.049V10.759L107.59 10.758ZM107.59 24.098C109.08 24.255 110.385 24.014 111.623 22.882C112.696 21.906 113.307 20.494 113.307 18.898C113.307 16.982 112.523 15.332 111.173 14.28C109.932 13.295 108.86 13.062 107.589 13.18V24.097L107.59 24.098ZM95.9323 26.649V0.544H108.882C115.972 0.544 121.586 1.754 121.586 6.911C121.586 9.537 120.459 11.492 116.356 12.049C121.901 12.778 122.539 15.703 122.514 18.949C122.51 23.76 118.439 26.649 108.928 26.649H95.9323ZM140.237 24.573C143.037 24.573 143.751 19.989 143.751 13.58C143.751 7.15 143.037 2.566 140.237 2.566C137.425 2.566 136.73 7.15 136.73 13.58C136.73 19.989 137.425 24.573 140.237 24.573ZM124.69 13.58C124.69 6.085 131.65 0 140.237 0C148.831 0 155.792 6.085 155.792 13.58C155.792 21.075 148.831 27.146 140.237 27.146C131.65 27.146 124.69 21.079 124.69 13.58ZM45.2093 24.366C42.8023 24.366 42.1243 21.966 42.1243 20.076V0.545H30.5183V18.061C30.5183 24.063 34.1083 27.201 41.8303 27.201C50.4803 27.201 53.0503 24.128 53.0503 18.061V0.544H48.3073V20.061C48.3073 21.957 47.6493 24.365 45.2093 24.365M11.6595 10.724C12.8365 10.682 14.0335 10.641 15.1065 10.014C16.2815 9.35701 16.9905 8.13701 16.9905 6.88501C16.9905 4.45301 15.4525 2.93901 12.5475 2.93901C12.2125 2.93901 12.0025 3.01501 11.6585 3.01501V10.725L11.6595 10.724ZM11.6595 24.064C13.1495 24.221 14.4545 23.98 15.6925 22.848C16.7655 21.872 17.3765 20.46 17.3765 18.864C17.3765 16.948 16.5925 15.298 15.2425 14.246C14.0015 13.261 12.9295 13.028 11.6585 13.146V24.063L11.6595 24.064ZM0.00146484 26.615V0.510012H12.9515C20.0415 0.510012 25.6555 1.72001 25.6555 6.87701C25.6555 9.50301 24.5285 11.458 20.4255 12.015C25.9705 12.744 26.6085 15.669 26.5835 18.915C26.5795 23.726 22.5085 26.615 12.9975 26.615H0.00146484Z" fill="white"/>
+    </svg>
+    
+
+<nav class="navigation-drawer closed">
+    @if (User.IsInRole("Manager"))
+    {
+        <ul>
+            <li class="no-dropdown-item">
+                <a asp-action="Index" asp-controller="Rooster">Rooster</a>
+            </li>
+            <li class="nav-item dropdown" aria-haspopup="true" aria-expanded="false">
+                <span>Prognose</span>
+                <span class="dropdown-arrow">▼</span>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "Home" ? "list-item-active" : "")">
+                        <a asp-action="Index" asp-controller="Home" onclick="updateDropdownText('@Resource.PrognoseNAV')"><i class="fa-solid fa-house"></i>@Resource.PrognoseNAV</a>
+                    </li>
+                    <li class="dropdown-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "DataBeheren" ? "list-item-active" : "")">
+                        <a asp-action="Index" asp-controller="DataBeheren" onclick="updateDropdownText('@Resource.DataNAV')"><i class="fa-solid fa-database"></i>@Resource.DataNAV</a>
+                    </li>
+                    <li class="dropdown-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "Template" ? "list-item-active" : "")">
+                        <a asp-action="Index" asp-controller="Template" onclick="updateDropdownText('@Resource.TemplatePagina')"><i class="fa-solid fa-history"></i>@Resource.TemplatePagina</a>
+                    </li>
+                    <li class="dropdown-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "NormeringHistory" ? "list-item-active" : "")">
+                        <a asp-action="Index" asp-controller="NormeringHistory" onclick="updateDropdownText('@Resource.NormeringenTitle')"><i class="fa-solid fa-pen-to-square"></i>@Resource.NormeringenTitle</a>
+                    </li>
+                    <li class="dropdown-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "Prognose bekijken" ? "list-item-active" : "")">
+                        <a asp-action="Prognoses" asp-controller="Home" onclick="updateDropdownText('Prognose bekijken')"><i class="fa-solid fa-clipboard"></i>Prognose bekijken</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown" aria-haspopup="true" aria-expanded="false">
+                <span>Medewerkers beheren</span>
+                <span class="dropdown-arrow">▼</span>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "EmployeeManagement" ? "list-item-active" : "")">
+                        <a asp-action="Index" asp-controller="MedewerkersBeheren" onclick="updateDropdownText('Medewerkers overzicht')"><i class="fa-solid fa-users"></i>Medewerkers Beheren</a>
+                    </li>
+                    <li class="dropdown-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "EmployeeManagement" ? "list-item-active" : "")">
+                        <a asp-action="Index" asp-controller="VerlofBeheren" onclick="updateDropdownText('Nieuwe medewerker')"><i class="fa-solid fa-envelope"></i>Verlof Beheren</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="no-dropdown-item">
+                <a asp-action="Index" asp-controller="Openingstijden">Openingstijden</a>
+            </li>
+        </ul>
+    }
+    else if (User.IsInRole("Employee"))
+    {
+        <ul>
+            <li class="no-dropdown-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "EmployeeRooster" ? "list-item-active" : "")">
+                <a asp-action="Index" asp-controller="EmployeeRooster">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Rooster</span>
+                </a>
+            </li>
+            <li class="no-dropdown-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "Verlof" ? "list-item-active" : "")">
+                <a asp-action="Index" asp-controller="Verlof">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Verlof</span>
+                </a>
+            </li>
+            <li class="no-dropdown-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "Beschikbaarheid" ? "list-item-active" : "")">
+                <a asp-action="Index" asp-controller="Beschikbaarheid">
+                    <i class="fa-solid fa-tasks"></i>
+                    <span>Beschikbaarheid</span>
+                </a>
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul>
+            <li class="list-item @(Html.ViewContext.RouteData.Values["controller"].ToString() == "Account" ? "list-item-active" : "")">
+                <a asp-action="Login" asp-controller="Account">
+                    <i class="fa-solid fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+            </li>
+        </ul>
+        }
+</nav>
+    <div class="nav-footer">
+        <div class="nav-item dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>
+                @if (Thread.CurrentThread.CurrentCulture.ToString() == "en")
+                {
+                    @Resource.Engels
+                }
+                else if (Thread.CurrentThread.CurrentCulture.ToString() == "de")
+                {
+                    @Resource.Duits
+                }
+                else if (Thread.CurrentThread.CurrentCulture.ToString() == "nl")
+                {
+                    @Resource.Nederlands
+                }
+            </span>
+            <span class="dropdown-arrow">▼</span>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="en">@Resource.Engels</a></li>
+                <li><a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="de">@Resource.Duits</a></li>
+                <li><a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="nl">@Resource.Nederlands</a></li>
+            </ul>
+        </div>
+        <form method="post" action="@Url.Action("Logout", "Account")" class="logout-form">
+            <button type="submit" class="logout-button">@Resource.Uitloggen</button>
+        </form>
+        <a asp-controller="Profile" asp-action="Index" class="profile-icon" aria-label="Profile">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </div>
+</header>
+
+<div class="content-wrapper">
+    <main class="wrapper">
+        @RenderBody()
+    </main>
+</div>
+@await RenderSectionAsync("Scripts", required: false)
+
+<script>
+    function updateDropdownText(text) {
+        document.getElementById('dropdownButton').innerText = text;
+    }
+    
+    function toggleMenu() {
+        const navDrawer = document.querySelector('.navigation-drawer');
+        navDrawer.classList.toggle('open');
+        navDrawer.classList.toggle('closed');
+        
+ document.addEventListener('DOMContentLoaded', () => {
+    const navDrawer = document.querySelector('.navigation-drawer');
+    const hamburger = document.querySelector('.hamburger');
+
+    // Toggle the navigation drawer on click
+    const toggleMenu = () => {
+        const isOpen = navDrawer.classList.contains('open');
+        navDrawer.classList.toggle('open', !isOpen);
+        navDrawer.classList.toggle('closed', isOpen);
+    };
+
+    // Attach event listener to the hamburger menu
+    if (hamburger) {
+        hamburger.addEventListener('click', toggleMenu);
+    }
+
+    // Close the menu when clicking outside of it
+    document.addEventListener('click', (event) => {
+        if (!navDrawer.contains(event.target) && !hamburger.contains(event.target)) {
+            navDrawer.classList.remove('open');
+            navDrawer.classList.add('closed');
+        }
+    });
+});
+        
+    }
+</script>
+</body>
+</html>

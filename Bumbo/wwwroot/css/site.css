@@ -1,0 +1,101 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*:root {*/
+/*    --surface: #FEF7FF;*/
+/*    --primary: #65558F;*/
+/*    --primary-text: #4A4459;*/
+/*    --tonal: #E8DEF8;*/
+/*    --stroke: #79747E;*/
+/*}*/
+:root {
+    --surface: #F4F6EF;
+    --primary: #1c1f23;
+    --primary-text: #000000; /* Wit */
+    --tonal: white; /* Lichtere donker blauw */
+    --stroke: #000000; /* Zwart */
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Noto sans", sans-serif;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.btn {
+    padding: 0.625rem 1.5rem;
+    font-size: 0.875rem;
+    border-radius: 1rem;
+    color: var(--primary);
+    border: 1px solid black;
+}
+
+.btn:hover{
+    cursor: pointer;
+
+}
+
+.text-primary {
+    color: var(--primary);   
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    border: 1px solid black;
+}
+
+.btn-outlined {
+    border: 1px solid var(--stroke);
+}
+
+.btn-tonal {
+    background-color: var(--tonal);
+    color: var(--primary);
+}
+
+.confirm-templates:hover{
+    cursor: pointer;
+}
+
+.custom-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.field-validation-error {
+    color: red !important; /* makes the validation errors from the backend look normal*/
+}
+
+.fired-employee-card {
+    border: 1px solid red;
+}
+
+.alert-custom {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: 1050;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}

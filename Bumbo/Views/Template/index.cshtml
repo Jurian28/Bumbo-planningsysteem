@@ -1,0 +1,122 @@
+﻿@using Bumbo.Resources
+@model Tuple<IEnumerable<BumboDB.Models.Norm>, IEnumerable<BumboDB.Models.Template>>
+
+<h2 class="page-title">@Resource.SchattingTemplatesTitle</h2>
+<div class="templates">
+    @if (Model?.Item2 != null && Model.Item2.Any())
+    {
+        <div class="row">
+            @foreach (var template in Model.Item2)
+            {
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="card-title">@template.Name</h6>
+                            <form class="template-form" data-template-id="@template.TemplateId">
+                                <input type="hidden" name="TemplateId" value="@template.TemplateId" />
+                                <input type="hidden" name="ChapterId" value="@template.ChapterId" />
+                                <div class="form-group">
+                                    <label class="small">@Resource.Naam</label>
+                                    <input type="text" name="Name" value="@template.Name" class="form-control form-control-sm" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="small">@Resource.CollisLabel</label>
+                                    <input type="number" name="PredictedCargo" value="@template.PredictedCargo" class="form-control form-control-sm" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="small">@Resource.KlantenLabel</label>
+                                    <input type="number" name="PredictedCustomers" value="@template.PredictedCustomers" class="form-control form-control-sm" />
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary btn-sm save-button">@Resource.OpslaanButton</button>
+                                    <button type="button" class="btn btn-danger btn-sm delete-button" data-template-id="@template.TemplateId">Verwijder</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>@Resource.GeenTemplatesBeschikbaar.</p>
+    }
+</div>
+
+<div class="template-nav d-flex justify-content-between align-items-center mt-4">
+    <form method="post" action="/Template/PreviousPage" class="d-inline">
+        <input type="hidden" name="currentPage" value="@ViewBag.CurrentPage" />
+        <button type="submit" class="btn btn-secondary btn-sm" @if(ViewBag.CurrentPage <= 1) { <text>disabled</text> }>&#8592;</button>
+    </form>
+    <span>@Resource.SchattingTemplatesTitle @ViewBag.CurrentPage/@ViewBag.TotalPages</span>
+    <form method="post" action="/Template/NextPage" class="d-inline">
+        <input type="hidden" name="currentPage" value="@ViewBag.CurrentPage" />
+        <button type="submit" class="btn btn-secondary btn-sm" @if(ViewBag.CurrentPage >= ViewBag.TotalPages) { <text>disabled</text> }>&#8594;</button>
+    </form>
+</div>
+
+<!-- Create Template Button -->
+<div class="text-center mt-4">
+    <a href="/Template/Create" class="btn btn-primary btn-sm">
+        @Resource.MaakNieuweTemplate
+    </a>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show alert-custom" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<!--  Scripting -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // AJAX for editing Templates
+        $('.template-form').on('submit', function (event) {
+            event.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: '@Url.Action("EditTemplate", "Template")',
+                type: 'POST',
+                data: form.serialize(),
+                success: function (response) {
+                    if (response.success) {
+                        form.find('.save-button').text('@Resource.OpslaanButton');
+                    } else {
+                        console.log('Fout bij het opslaan van template.');
+                    }
+                },
+                error: function () {
+                    console.log('Er is een fout opgetreden.');
+                }
+            });
+        });
+
+        // AJAX for deleting Templates
+        $('.delete-button').on('click', function () {
+            var templateId = $(this).data('template-id');
+            var chapterId = $(this).closest('form').find('input[name="ChapterId"]').val();
+            $.ajax({
+                url: '@Url.Action("DeleteTemplate", "Template")',
+                type: 'POST',
+                data: { templateId: templateId, chapterId: chapterId },
+                success: function (response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        console.log('Fout bij het verwijderen van template.');
+                    }
+                },
+                error: function () {
+                    console.log('Er is een fout opgetreden.');
+                }
+            });
+        });
+    });
+</script>

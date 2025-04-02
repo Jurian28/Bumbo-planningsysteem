@@ -1,0 +1,198 @@
+/* Add padding to the top of the body to prevent overlap with the navbar */
+body {
+    padding-top: 60px; /* Adjust the value as needed */
+}
+
+header {
+    background-color: #1c1f23;
+    padding: 0.5rem 1rem; /* Adjust padding to reduce height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 60px; /* Set height to match other navbar */
+}
+
+.logout-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    color: #d1d5db;
+    background-color: transparent;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #d1d5db;
+    color: #1c1f23;
+}
+
+/* General form styling */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Centered text styling */
+.form-title {
+    text-align: center;
+    color: var(--primary);
+}
+
+.form-description {
+    text-align: center;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Label styling */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #272824;
+}
+
+/* Input field styling */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Span text styling */
+.form-text {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #272824;
+}
+
+/* Button styling */
+
+
+.btn-primary:hover {
+    background-color: #5a6268;}
+
+/* Cancel button styling */
+.btn-primary, .btn-secondary-Ann {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    width: 100px; /* Set a fixed width */
+}
+
+.btn-secondary-Ann:hover {
+    background-color: #5a6268;
+    text-decoration: none; /* Ensure underline is removed on hover */
+}
+
+.edit-cell {
+    position: relative;
+    text-align: right;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.edit-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Flexbox container for buttons */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Media query for screens 400px or less */
+@media (max-width: 400px) {
+    body {
+        padding-top: 80px; /* Increase padding to create more space */
+    }
+
+    h2 {
+        margin-top: 20px; /* Add space between the title and the navbar */
+    }
+
+    form {
+        margin-top: 20px; /* Add space between the form and the title */
+    }
+}

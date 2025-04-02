@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            <xsd:complexType>
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" />
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <!-- Add your text entries here -->
+    <data name="NormeringenTitle" xml:space="preserve">
+        <value>Normeringen</value>
+    </data>
+    <data name="PrognoseText" xml:space="preserve">
+        <value>Prognose voor benodigde bezetting wordt volgens de volgende richtlijnen berekend:</value>
+    </data>
+    <data name="GeenNormeringenBeschikbaar" xml:space="preserve">
+        <value>Geen normeringen beschikbaar.</value>
+    </data>
+    <data name="SchattingTemplatesTitle" xml:space="preserve">
+        <value>Schatting Templates</value>
+    </data>
+    <data name="GeenTemplatesBeschikbaar" xml:space="preserve">
+        <value>Geen templates beschikbaar.</value>
+    </data>
+    <data name="TemplatePagina" xml:space="preserve">
+        <value>Template </value>
+    </data>
+    <data name="MaakNieuweTemplate" xml:space="preserve">
+        <value>Maak nieuwe template</value>
+    </data>
+    <data name="TitelLabel" xml:space="preserve">
+        <value>Titel</value>
+    </data>
+    <data name="CollisLabel" xml:space="preserve">
+        <value>Collis</value>
+    </data>
+    <data name="KlantenLabel" xml:space="preserve">
+        <value>Klanten</value>
+    </data>
+    <data name="OpslaanButton" xml:space="preserve">
+        <value>Opslaan</value>
+    </data>
+    <data name="Nederlands" xml:space="preserve">
+        <value>Nederlands</value>
+    </data>
+    <data name="Engels" xml:space="preserve">
+        <value>Engels</value>
+    </data>
+    <data name="Duits" xml:space="preserve">
+        <value>Duits</value>
+    </data>
+    <data name="NormeringNAV" xml:space="preserve">
+        <value>Normering</value>
+    </data>
+    <data name="PrognoseNAV" xml:space="preserve">
+        <value>Maak Prognose</value>
+    </data>
+    <data name="DataNAV" xml:space="preserve">
+        <value>Data Beheren</value>
+    </data>
+    <data name="Maandag" xml:space="preserve">
+        <value>Maandag</value>
+    </data>
+    <data name="Dinsdag" xml:space="preserve">
+        <value>Dinsdag</value>
+    </data>
+    <data name="Woensdag" xml:space="preserve">
+        <value>Woensdag</value>
+    </data>
+    <data name="Donderdag" xml:space="preserve">
+        <value>Donderdag</value>
+    </data>
+    <data name="Vrijdag" xml:space="preserve">
+        <value>Vrijdag</value>
+    </data>
+    <data name="Zaterdag" xml:space="preserve">
+        <value>Zaterdag</value>
+    </data>
+    <data name="Zondag" xml:space="preserve">
+        <value>Zondag</value>
+    </data>
+    <data name="AantalBezoekers" xml:space="preserve">
+        <value>Aantal bezoekers</value>
+    </data>
+    <data name="AantalVulkarren" xml:space="preserve">
+        <value>Aantal vulkarren</value>
+    </data>
+    <data name="SpecialeFeestdagen" xml:space="preserve">
+        <value>Speciale feestdagen</value>
+    </data>
+    <data name="Vulploeg" xml:space="preserve">
+        <value>Vulploeg </value>
+    </data>
+    <data name="Kassa" xml:space="preserve">
+        <value>Kassa </value>
+    </data>
+    <data name="Vers" xml:space="preserve">
+        <value>Vers </value>
+    </data>
+    <data name="Bevestig" xml:space="preserve">
+        <value>Bevestig template</value>
+    </data>
+    <data name="Naam" xml:space="preserve">
+        <value>Naam</value>
+    </data>
+    <data name="Uren" xml:space="preserve">
+        <value>Uren</value>
+    </data>
+    <data name="Week" xml:space="preserve">
+        <value>Week</value>
+    </data>
+    <data name="Ma" xml:space="preserve">
+    <value>Ma</value>
+</data>
+    <data name="Di" xml:space="preserve">
+    <value>Di</value>
+</data>
+    <data name="Wo" xml:space="preserve">
+    <value>Wo</value>
+</data>
+    <data name="Do" xml:space="preserve">
+    <value>Do</value>
+</data>
+    <data name="Vr" xml:space="preserve">
+    <value>Vr</value>
+</data>
+    <data name="Za" xml:space="preserve">
+    <value>Za</value>
+</data>
+    <data name="Zo" xml:space="preserve">
+    <value>Zo</value>
+</data>
+    <data name="Datum" xml:space="preserve">
+        <value>Datum</value>
+    </data>
+    <data name="Acties" xml:space="preserve">
+        <value>Acties</value>
+    </data>
+    <data name="Spiegelen" xml:space="preserve">
+        <value>Spiegelen</value>
+    </data>
+    <data name="Coli uitladen" xml:space="preserve">
+        <value>Coli uitladen</value>
+    </data>
+    <data name="Uitloggen" xml:space="preserve">
+        <value>Uitloggen</value>
+    </data>
+    <data name="Annuleren" xml:space="preserve">
+        <value>Annuleren</value>
+    </data>
+    <data name="Wijzigen" xml:space="preserve">
+        <value>Wijzigen</value>
+    </data>
+    <data name="Maak" xml:space="preserve">
+        <value>Maak</value>
+    </data>
+</root>

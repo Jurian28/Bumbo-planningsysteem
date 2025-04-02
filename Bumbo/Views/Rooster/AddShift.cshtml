@@ -1,0 +1,138 @@
+﻿@using BumboDB.Models
+@using System.Globalization
+@model Bumbo.Models.AddShiftViewModel
+@{
+    ViewData["Title"] = "Rooster";
+}
+
+@functions {
+    public double getHours(Employee employee, DateOnly date)
+    {
+        BumboContext context = new BumboContext();
+        var shiftsThisWeekAdult = context.Shifts
+                            .AsEnumerable()
+                            .Where(s => s.EmployeeId == employee.Id && GetWeekNumberFromDate(s.Date) == GetWeekNumberFromDate(date))
+                            .ToList();
+        return shiftsThisWeekAdult.Sum(s => (s.EndTime - s.StartTime).TotalHours);
+    }
+
+    public static int GetWeekNumberFromDate(DateOnly date)
+    {
+        DateTime dateTime = date.ToDateTime(TimeOnly.MinValue);
+
+        DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(dateTime);
+        if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
+        {
+            dateTime = dateTime.AddDays(3);
+        }
+
+        return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(dateTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+    }
+}
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">@Model.Date.ToString("dddd, dd MMMM yyyy")</h1>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form class="search-form" asp-action="AddShift" asp-controller="Rooster" method="get">
+                        <input type="hidden" name="afdeling" value="@Model.SelectedDepartment.Name" />
+                        <p>Inplannen op afdeling: <strong>@Model.SelectedDepartment.Name</strong> I <strong>@Model.HoursLeft</strong> Uur Over</p>
+
+                        <div class="form-group">
+                            <label for="StartTime">Start Time:</label>
+                            <select id="StartTime" name="beginTime" class="form-control">
+                                @for (var hour = 0; hour < 24; hour++)
+                                {
+                                    for (var minute = 0; minute < 60; minute += 30)
+                                    {
+                                        var time = new TimeSpan(hour, minute, 0);
+                                        var timeString = time.ToString(@"hh\:mm");
+                                        var isSelected = timeString == Model.StartTime.ToString("HH:mm") ? "selected" : "";
+
+                                        <option value="@timeString" selected="@(isSelected == "selected")">
+                                            @timeString
+                                        </option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="EndTime">End Time:</label>
+                            <select id="EndTime" name="endTime" class="form-control">
+                                @for (var hour = 0; hour < 24; hour++)
+                                {
+                                    for (var minute = 0; minute < 60; minute += 30)
+                                    {
+                                        var time = new TimeSpan(hour, minute, 0);
+                                        var timeString = time.ToString(@"hh\:mm");
+                                        var isSelected = timeString == Model.EndTime.ToString("HH:mm") ? "selected" : "";
+
+                                        <option value="@timeString" selected="@(isSelected == "selected")">
+                                            @timeString
+                                        </option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ZoekMedewerker">Zoek Medewerker</label>
+                            <input type="text" id="ZoekMedewerker" name="empName" class="form-control" value="@Model.EmpName"/>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="OtherChapters" name="OtherChapters" value="true" @(Model.OtherChapters ? "checked" : "") />
+                            <label class="form-check-label" for="OtherChapters">Andere filialen</label>
+                        </div>
+
+                        <input type="hidden" name="date" value="@Model.Date.ToString("yyyy-MM-dd")" />
+
+                        <button type="submit" class="btn btn-primary">Zoek</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2>Beschikbare medewerkers</h2>
+                    <form method="post" asp-action="PlanShift" asp-controller="Rooster">
+                        <div class="list-available-employees">
+                            @for (int i = 0; i < 16; i++)
+                            {
+                                if (i < Model.AvailableEmployees.Count)
+                                {
+                                    var employee = Model.AvailableEmployees[i];
+                                    if (employee != null)
+                                    {
+                                        var today = DateOnly.FromDateTime(DateTime.Today);
+                                        var age = today.Year - employee.Birthday.Year;
+                                        if (employee.Birthday > today.AddYears(-age)) age--;
+                                        <div class="available-employee mb-2 p-2 rounded border bg-light">
+                                            <label for="employee-@employee.Id">
+                                                <p class="mb-0"><strong>@employee.Name</strong> - @age jaar</p>
+                                                <p class="mb-0">Aantal uren deze week: @getHours(employee, Model.Date)</p>
+                                            </label>
+                                            <input type="radio" id="employee-@employee.Id" name="SelectedEmployee" value="@employee.Id" />
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                        <input type="hidden" name="date" value="@Model.Date.ToString("yyyy-MM-dd")" />
+                        <input type="hidden" name="beginTime" value="@Model.StartTime.ToString("HH:mm")" />
+                        <input type="hidden" name="endTime" value="@Model.EndTime.ToString("HH:mm")" />
+                        <input type="hidden" name="afdeling" value="@Model.SelectedDepartment.Name" />
+
+                        <button type="submit" class="btn btn-success">Inplannen</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

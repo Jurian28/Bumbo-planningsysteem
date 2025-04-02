@@ -1,0 +1,154 @@
+﻿@model Bumbo.Models.PrognoseViewModel
+
+@using Bumbo.Resources
+@{
+    ViewData["Title"] = "Home Page";
+
+    var templates = ViewData["Templates"] as List<BumboDB.Models.Template>;
+    <link rel="stylesheet" href="~/css/Prognose.css" asp-append-version="true" />
+}
+
+<h2 class="Title-Prog">@Resource.PrognoseNAV</h2>
+<div class="week-selector">
+    <button class="btn btn-tonal" onclick="previousWeek()">&#8592;</button>
+    <span id="week-number" class="week-number"> @Resource.Week </span>, <span id="year" class="year"></span>   
+    <button class="btn btn-tonal" onclick="nextWeek()">&#8594;</button>
+</div>
+
+<form method="post" action="/Home/PrognosisCreated/">
+    <div class="template-days">
+        <div class="day">
+            <div class="day-name-background">
+                <label asp-for="SelectedTemplates[0]" class="day-name">@Resource.Maandag</label>
+            </div>
+            <select asp-for="SelectedTemplates[0]" class="template-button">
+                @foreach (var template in templates)
+                {
+                    if (template.Name == "Gem. Ma")
+                    {
+                        <option value="@template.TemplateId" selected>@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                    else
+                    {
+                        <option value="@template.TemplateId">@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="day">
+            <div class="day-name-background">
+                <label asp-for="SelectedTemplates[1]" class="day-name">@Resource.Dinsdag</label>
+            </div>
+            <select asp-for="SelectedTemplates[1]" class="template-button">
+                @foreach (var template in templates)
+                {
+                    if (template.Name == "Gem. Di")
+                    {
+                        <option value="@template.TemplateId" selected>@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                    else
+                    {
+                        <option value="@template.TemplateId">@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="day">
+            <div class="day-name-background">
+                <label asp-for="SelectedTemplates[2]" class="day-name">@Resource.Woensdag</label>
+            </div>
+            <select asp-for="SelectedTemplates[2]" class="template-button">
+                @foreach (var template in templates)
+                {
+                    if (template.Name == "Gem. Wo")
+                    {
+                        <option value="@template.TemplateId" selected>@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                    else
+                    {
+                        <option value="@template.TemplateId">@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="day">
+            <div class="day-name-background">
+                <label asp-for="SelectedTemplates[3]" class="day-name">@Resource.Donderdag</label>
+            </div>
+            <select asp-for="SelectedTemplates[3]" class="template-button">
+                @foreach (var template in templates)
+                {
+                    if (template.Name == "Gem. Do")
+                    {
+                        <option value="@template.TemplateId" selected>@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                    else
+                    {
+                        <option value="@template.TemplateId">@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="day">
+            <div class="day-name-background">
+                <label asp-for="SelectedTemplates[4]" class="day-name">@Resource.Vrijdag</label>
+            </div>
+            <select asp-for="SelectedTemplates[4]" class="template-button">
+                @foreach (var template in templates)
+                {
+                    if (template.Name == "Gem. Vr")
+                    {
+                        <option value="@template.TemplateId" selected>@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                    else
+                    {
+                        <option value="@template.TemplateId">@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="day">
+            <div class="day-name-background">
+                <label asp-for="SelectedTemplates[5]" class="day-name">@Resource.Zaterdag</label>
+            </div>
+            <select asp-for="SelectedTemplates[5]" class="template-button">
+                @foreach (var template in templates)
+                {
+                    if (template.Name == "Gem. Za")
+                    {
+                        <option value="@template.TemplateId" selected>@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                    else
+                    {
+                        <option value="@template.TemplateId">@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="day">
+            <div class="day-name-background">
+                <label asp-for="SelectedTemplates[6]" class="day-name">@Resource.Zondag</label>
+            </div>
+            <select asp-for="SelectedTemplates[6]" class="template-button">
+                @foreach (var template in templates)
+                {
+                    if (template.Name == "Gem. Zo")
+                    {
+                        <option value="@template.TemplateId" selected>@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                    else
+                    {
+                        <option value="@template.TemplateId">@template.Name / @template.PredictedCustomers Klanten / @template.PredictedCargo Collis</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    <input type="hidden" name="Week" id="weekForm" value="@Model.Week" />
+    <input type="hidden" name="Year" id="yearForm" value="@Model.Year" />
+
+    <button type="submit" class="confirm-templates">@Resource.Bevestig</button>
+</form>
+
+<script src="~/js/Home.js" asp-append-version="true"></script>
